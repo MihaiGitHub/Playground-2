@@ -9,7 +9,6 @@ const SendRequest = () => {
     });
 
     const [ savedPosts, setSavedPosts ] = useState([]);
-
     const { title, body } = values;
 
     const handleChange = name => event => {
@@ -27,9 +26,7 @@ const SendRequest = () => {
     const form = () => (
         <form>
             <input onChange={handleChange('title')} type="text" value={title} placeholder="Title" />
-
             <input onChange={handleChange('body')} type="text" value={body} placeholder="Body" />
-
             <button onClick={handleSubmit}>Submit</button>
         </form>
     );
