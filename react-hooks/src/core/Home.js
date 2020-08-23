@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { getPosts } from './apiCore';
 
 const Home = () => {
@@ -30,26 +29,46 @@ const Home = () => {
 
     const form = () => (
         <form>
-            <input onChange={handleChange('search')} type="text" placeholder="Search" value={search} />
+            <div className="input-group input-group-lg">
+                <div className="input-group-prepend">
+                    <span className="input-group-text" id="inputGroup-sizing-lg">Title</span>
+                </div>
+
+                <input 
+                    onChange={handleChange('search')} 
+                    value={search} type="text" 
+                    className="form-control" 
+                    aria-label="Large" 
+                    aria-describedby="inputGroup-sizing-sm"
+                />
+            </div>
         </form>
     );
 
     return (
         <Fragment>
-            <Link to="/sendRequest">Send Request</Link>
-
-            <h2>Home</h2>
+            <h1 className="mt-4">Search Posts</h1>
 
             {form()}
 
-            <ul>
-                {filteredPosts.map((post, index) => (
-                    <li key={index}>
-                        {post.title}
-                    </li>
-                ))}
-            </ul>
-
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Body</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filteredPosts.map((post, index) => (
+                        <tr key={index}>
+                            <td>{post.id}</td>
+                            <td>{post.title}</td>
+                            <td>{post.body}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </Fragment>
     );
 }
