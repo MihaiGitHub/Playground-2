@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './core/Home';
 import { Menu } from './core/Menu';
 import SavePost from './core/SavePost';
+import Refs from './core/Refs';
 
 const Routes = () => {
     return (
@@ -19,6 +20,7 @@ const Routes = () => {
                   <Switch>
                       <Route path="/" exact component={Home} />
                       <Route path="/savepost" exact component={SavePost} />
+                      <Route path="/refs" exact component={Refs} />
                   </Switch>
               </div>
           </div>
