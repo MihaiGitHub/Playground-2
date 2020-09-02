@@ -1,12 +1,13 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 
 const Refs = () => {
-    const chat1 = useRef(null);
+    const [ value, setValue ] = useState('');
+    const input1 = useRef(null);
 
-    const chat1Submit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
 
-        console.log(chat1.current.value);
+        setValue(input1.current.value)
     }
 
     const form = () => (
@@ -14,7 +15,7 @@ const Refs = () => {
             <div className="row">
                 <div className="col">
                     <input 
-                        ref={chat1}
+                        ref={input1}
                         type="text" 
                         className="form-control" 
                         placeholder="This input has a ref"
@@ -22,7 +23,7 @@ const Refs = () => {
                 </div>
 
                 <div className="col">
-                    <button onClick={chat1Submit} className="btn btn-primary">Submit</button>
+                    <button onClick={handleSubmit} className="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>
@@ -33,6 +34,10 @@ const Refs = () => {
             <h1 className="mt-4">Refs</h1>
 
             {form()}
+
+            <hr />
+
+            <h4>Value: {value}</h4>
         </Fragment>
     );
 };
