@@ -47,7 +47,7 @@ const Home = () => {
 
     return (
         <Fragment>
-            <h1 className="mt-4">Search Posts</h1>
+            <h1 className="mt-4">Search List</h1>
 
             {form()}
 

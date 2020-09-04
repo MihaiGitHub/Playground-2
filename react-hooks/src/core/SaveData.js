@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import { savePost } from './apiCore';
+import { saveData } from './apiCore';
 
-const SavePost = () => {
+const SaveData = () => {
     const [ values, setValues ] = useState({
         title: '',
         body: ''
@@ -17,7 +17,7 @@ const SavePost = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        savePost({ title, body }).then(data => {
+        saveData({ title, body }).then(data => {
             setSavedPosts([ ...savedPosts, data ]);
         });
     }
@@ -55,7 +55,7 @@ const SavePost = () => {
 
     return (
         <Fragment>
-            <h1 className="mt-4">Save Post</h1>
+            <h1 className="mt-4">Save Data</h1>
 
             {form()}
 
@@ -81,4 +81,4 @@ const SavePost = () => {
     );
 }
 
-export default SavePost;
+export default SaveData;

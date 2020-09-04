@@ -10,7 +10,7 @@ export const getPosts = () => {
     .catch(err => console.log(err));
 }
 
-export const savePost = ({ title, body }) => {
+export const saveData = ({ title, body }) => {
     return fetch(`${API}/posts`, {
         method: 'POST',
         body: JSON.stringify({
