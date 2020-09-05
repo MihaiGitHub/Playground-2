@@ -8,6 +8,7 @@ export const Menu = () => (
         <Link className="list-group-item list-group-item-action bg-light" to="/savedata">Save Data</Link>
         <Link className="list-group-item list-group-item-action bg-light" to="/refs">Refs</Link>
         <Link className="list-group-item list-group-item-action bg-light" to="/localstorage">Local Storage</Link>
+        <Link className="list-group-item list-group-item-action bg-light" to="/largedataset">Large Dataset</Link>
       </div>
     </div>
 );

@@ -5,6 +5,7 @@ import { Menu } from './core/Menu';
 import SaveData from './core/SaveData';
 import Refs from './core/Refs';
 import LocalStorage from './core/LocalStorage';
+import LargeDataset from './core/LargeDataset';
 
 const Routes = () => {
     return (
@@ -23,6 +24,7 @@ const Routes = () => {
                       <Route path="/savedata" exact component={SaveData} />
                       <Route path="/refs" exact component={Refs} />
                       <Route path="/localstorage" exact component={LocalStorage} />
+                      <Route path="/largedataset" exact component={LargeDataset} />
                   </Switch>
               </div>
           </div>
