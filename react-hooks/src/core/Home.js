@@ -1,76 +1,105 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { getPosts } from './apiCore';
+import React, { Fragment, useState, useEffect } from "react";
+import { getPosts } from "./apiCore";
 
 const Home = () => {
-    const [ posts, setPosts ] = useState([]);
-    const [ filteredPosts, setFilteredPosts ] = useState([]);
-    const [ search, setSearch ] = useState('');
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [search, setSearch] = useState("");
 
-    const init = () => {
-       getPosts().then(data => {
-            setPosts(data);
-            setFilteredPosts(data);
-       });
-    }
+  const init = () => {
+    getPosts().then((data) => {
+      setPosts(data);
+      setFilteredPosts(data);
+    });
+  };
 
-    useEffect(() => {
-        init();
-    }, []);
+  useEffect(() => {
+    init();
+  }, []);
 
-    const handleChange = name => event => {
-        setSearch(event.target.value);
+  const handleChange = (name) => (event) => {
+    setSearch(event.target.value);
 
-        const filteredPosts = posts.filter((item) => {
-            return item.title.toLowerCase().includes(event.target.value.toLowerCase());
-        });
+    const filteredPosts = posts.filter((item) => {
+      return item.title
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase());
+    });
 
-        setFilteredPosts(filteredPosts);
-    }
+    setFilteredPosts(filteredPosts);
+  };
 
-    const form = () => (
-        <form>
-            <div className="input-group input-group-lg">
-                <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroup-sizing-lg">Title</span>
-                </div>
+  const handleClick = (e) => {
+    e.preventDefault();
 
-                <input 
-                    onChange={handleChange('search')} 
-                    value={search} type="text" 
-                    className="form-control" 
-                    aria-label="Large" 
-                    aria-describedby="inputGroup-sizing-sm"
-                />
-            </div>
-        </form>
-    );
+    // clone filteredPosts array on sort otherwise the change detection
+    // will not detect the array changed and will not update the component
+    const sortedPosts = [...filteredPosts].sort((a, b) => {
+      let compare = 0;
 
-    return (
-        <Fragment>
-            <h1 className="mt-4">Search List</h1>
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
+        compare = 1;
+      } else {
+        compare = -1;
+      }
 
-            {form()}
+      return compare;
+    });
 
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Body</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredPosts.map((post, index) => (
-                        <tr key={index}>
-                            <td>{post.id}</td>
-                            <td>{post.title}</td>
-                            <td>{post.body}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </Fragment>
-    );
-}
+    setFilteredPosts(sortedPosts);
+  };
+
+  const form = () => (
+    <form>
+      <div className="input-group input-group-lg">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="inputGroup-sizing-lg">
+            Title
+          </span>
+        </div>
+
+        <input
+          onChange={handleChange("search")}
+          value={search}
+          type="text"
+          className="form-control"
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
+        />
+
+        <button className="btn btn-primary ml-5" onClick={handleClick}>
+          Sort
+        </button>
+      </div>
+    </form>
+  );
+
+  return (
+    <Fragment>
+      <h1 className="mt-4">Search List</h1>
+
+      {form()}
+
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredPosts.map((post, index) => (
+            <tr key={index}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{post.body}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </Fragment>
+  );
+};
 
 export default Home;
