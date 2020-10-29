@@ -1,32 +1,28 @@
-import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import Home from './core/Home';
-import SavePost from './core/SavePost';
-import Refs from './core/Refs';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import SaveData from "./core/SaveData";
 
-Enzyme.configure({ adapter: new Adapter() });
+test("SaveData component renders the correct content", () => {
+  const { getByText } = render(<SaveData />);
 
-describe('Search Posts component ', () => {
-  test('renders', () => {
-    const wrapper = shallow(<Home />);
-
-    expect(wrapper.exists()).toBe(true);
-  });
+  expect(getByText("Save Data")).not.toBeNull();
+  expect(getByText("ID")).not.toBeNull();
+  expect(getByText("Title")).not.toBeNull();
+  expect(getByText("Body")).not.toBeNull();
 });
 
-describe('Save Post component ', () => {
-  test('renders', () => {
-    const wrapper = shallow(<SavePost />);
+test("Allows users to save items to their list", async () => {
+  const { getByText, getByPlaceholderText, findByText } = render(<SaveData />);
 
-    expect(wrapper.exists()).toBe(true);
-  });
-});
+  const inputTitle = getByPlaceholderText("Title");
+  const inputBody = getByPlaceholderText("Body");
 
-describe('Refs component ', () => {
-  test('renders', () => {
-    const wrapper = shallow(<Refs />);
+  fireEvent.change(inputTitle, { target: { value: "Test case title" } });
+  fireEvent.change(inputBody, { target: { value: "Test case body" } });
 
-    expect(wrapper.exists()).toBe(true);
-  });
+  fireEvent.click(getByText("Save"));
+
+  // wait for appearance and return the element
+  const titleSaved = await findByText("Test case title");
+  const bodySaved = await findByText("Test case body");
 });
