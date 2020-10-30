@@ -9,6 +9,7 @@ test("SaveData component renders the correct content", () => {
   expect(getByText("ID")).not.toBeNull();
   expect(getByText("Title")).not.toBeNull();
   expect(getByText("Body")).not.toBeNull();
+  expect(getByText("Save")).not.toBeNull();
 });
 
 test("Allows users to save items to their list", async () => {
