@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<title>Flexbox Nested Grid</title>
+<style>
+  .wrapper {
+    display: flex;
+  }
+  .wrapper > div {
+    font-size: 4vh;
+    color: white;
+    background: hotpink;
+    margin: 0.1em;
+    padding: 0.3em;
+    border-radius: 3px;
+    flex: 1;
+  }
+  .wrapper .wrapper > div {
+    background: pink;
+    color: hotpink;
+  }
+</style>
+<div class="wrapper">
+  <div>
+    1
+
+    <div class="wrapper">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+    <div class="wrapper">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </div>
+    <div class="wrapper">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
+  </div>
+  <div>2</div>
+  <div>3</div>
+</div>
+<div class="wrapper">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</div>
+<div class="wrapper">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
