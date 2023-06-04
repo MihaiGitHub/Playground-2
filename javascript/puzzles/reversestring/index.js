@@ -9,10 +9,22 @@
 function reverse(str) {
   // turn string to array and use reduce to condense all values in the array to a single string value
   return str.split("").reduce((reversed, character) => {
+    debugger;
     // arg1 - arrow function, arg2 - starting an initial value for the function
     return character + reversed;
   }, "");
 }
+
+// need to call the function to use the debugger
+reverse("asdf");
+
+// Using the debugger
+// add debugger keyword
+// in terminal - node inspect <filename>
+// to continue execution until next debugger statement - c
+// to inspect variables at this point in time enter the repl - repl
+// type the name of the variable to look at it
+// ctrl + c to exit repl then c to continue the execution again
 
 function reverse2(str) {
   let reversed = "";
