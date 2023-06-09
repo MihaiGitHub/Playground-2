@@ -21,7 +21,7 @@ function buildCharMap(str) {
   return charMap;
 }
 
-function anagrams(stringA, stringB) {
+function anagrams2(stringA, stringB) {
   const aCharMap = buildCharMap(stringA);
   const bCharMap = buildCharMap(stringB);
 
@@ -38,6 +38,16 @@ function anagrams(stringA, stringB) {
   }
 
   return true;
+}
+
+// solution 2
+function cleanString(str) {
+  // clean string, turn to array, sort it, then turn back into a string
+  return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("");
+}
+function anagrams(stringA, stringB) {
+  // compare the cleaned strings to see if they have same characters
+  return cleanString(stringA) === cleanString(stringB);
 }
 
 module.exports = anagrams;
