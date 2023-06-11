@@ -22,12 +22,17 @@ function capitalize(str) {
 }
 
 function capitalize2(str) {
+  // start out by capitalizing the first letter of the string
   let result = str[0].toUpperCase();
 
   for (let i = 1; i < str.length; i++) {
+    // check for space to determine if you are on the first letter of a new word and capitalize it
+    // then add it to the result string
+
     if (str[i - 1] === " ") {
       result += str[i].toUpperCase();
     } else {
+      // if not the first letter of a word, add it to the result string
       result += str[i];
     }
   }
