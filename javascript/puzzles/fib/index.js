@@ -7,8 +7,15 @@
 // forms the first ten entries of the fibonacci series.
 // Example:
 //   fib(4) === 3
-
 function fib(n) {
+  if (n < 2) {
+    return n;
+  }
+
+  return fib(n - 1) + fib(n - 2);
+}
+
+function fib2(n) {
   // get a head start with a 2 element array because 0 and 1 will always be there
   const result = [0, 1];
 
