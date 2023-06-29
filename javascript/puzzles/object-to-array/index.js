@@ -4,7 +4,9 @@ const myObject = {
   a: 1,
   b: 2,
   c: ["a", "b", "c"],
-  d: { name: "Mike", age: 38 },
+  d: { name: "Mike", age: 38, address: { city: "Denver", state: "CO" } },
+  5: "something",
+  6: true,
 };
 
 let myArray = [];

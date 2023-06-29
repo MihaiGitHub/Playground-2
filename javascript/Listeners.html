@@ -1,0 +1,35 @@
+<div
+  id="green"
+  style="height: 200px; width: 400px; background-color: green"
+></div>
+<div style="height: 200px; width: 400px; background-color: brown"></div>
+<div style="height: 200px; width: 400px; background-color: blue"></div>
+<button id="MyBtn">Remove all event listeners</button>
+<script>
+  // self executing function
+  (function () {
+    // add overall event listener on entire document
+    document.addEventListener("click", listener1, { capture: true });
+
+    // mouseover event listener to green square
+    document.getElementById("green").addEventListener("mouseover", listener2);
+
+    // add click event listener to btn
+    document.getElementById("MyBtn").addEventListener("click", btnListener);
+  })();
+
+  function listener1() {
+    alert("Listener1");
+  }
+
+  function listener2() {
+    alert("Listener2");
+  }
+
+  function btnListener() {
+    document.removeEventListener("click", listener1);
+    document
+      .getElementById("green")
+      .removeEventListener("mouseover", listener2);
+  }
+</script>
