@@ -15,3 +15,23 @@ class Node {
     });
   }
 }
+
+class Tree {
+  constructor() {
+    this.root = null;
+  }
+
+  // breadth first traversal
+  traverseBF(fn) {
+    const arr = [this.root];
+
+    while (arr.length) {
+      // takes out 1st element of array
+      const node = arr.shift();
+
+      // take all the nodes children and push into the array
+      arr.push(...node.children);
+      fn(node);
+    }
+  }
+}
