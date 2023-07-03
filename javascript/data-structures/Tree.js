@@ -34,4 +34,14 @@ class Tree {
       fn(node);
     }
   }
+
+  // depth first traversal
+  traverseDF(fn) {
+    while (arr.length) {
+      const node = arr.shift();
+
+      arr.unshift(...node.children);
+      fn(node);
+    }
+  }
 }
