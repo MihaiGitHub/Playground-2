@@ -1,0 +1,59 @@
+<script>
+  // convert object to array
+
+  const myObject = {
+    a: 1,
+    b: 2,
+    c: ["a", "b", "c"],
+    d: { name: "Mike", age: 38, address: { city: "Denver", state: "CO" } },
+    5: "something",
+    6: true,
+  };
+
+  function objectToArray(object, array = []) {
+    console.log("Calling with ", object, array);
+    for (let item in object) {
+      if (typeof object[item] === "object") {
+        if (Array.isArray(object[item])) {
+          console.log("pushing1 ", object[item]);
+          array.push(object[item]);
+        } else {
+          console.log("pushing2 ", Object.values(object[item]));
+          array.push(Object.values(object[item]));
+
+          for (let item2 in object[item]) {
+            if (typeof object[item][item2] === "object") {
+              if (Array.isArray(object[item][item2])) {
+                console.log("pushing3 ", object[item][item2]);
+                array.push(object[item][item2]);
+              } else {
+                objectToArray(object[item][item2], array);
+              }
+            }
+          }
+        }
+      } else {
+        console.log("pushing11 ", object[item]);
+        array.push(object[item]);
+      }
+    }
+
+    return array;
+  }
+
+  // let myArray = [];
+
+  // for (let item in myObject) {
+  //   if (typeof myObject[item] === "object") {
+  //     if (Array.isArray(myObject[item])) {
+  //       myArray.push(myObject[item]);
+  //     } else {
+  //       myArray.push(Object.values(myObject[item]));
+  //     }
+  //   } else {
+  //     myArray.push(myObject[item]);
+  //   }
+  // }
+
+  console.log(objectToArray(myObject));
+</script>
