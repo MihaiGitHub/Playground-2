@@ -1,0 +1,67 @@
+Get me the longest non duplicate substring from the given string
+"aaabbbbbccccddddeeeefghijklmnnnopppqrst" ----> Expected o/p - "efghijklmn"
+<script>
+  function longestSubstring2(str) {
+    let substringObject = {};
+    let strArray = str.split("");
+    let firstLetterIndex = 999;
+    let tempString = "";
+
+    for (let i = 0; i < strArray.length; i++) {
+      if (tempString.includes(strArray[i])) {
+        console.log("firstLetterIndex ", firstLetterIndex);
+
+        const substring = strArray.slice(firstLetterIndex, i);
+        substringObject[substring.join("")] = substring.length;
+
+        firstLetterIndex = 999;
+        tempString = "";
+      } else {
+        if (firstLetterIndex === 999) {
+          firstLetterIndex = i;
+        }
+
+        tempString = tempString + strArray[i];
+      }
+    }
+
+    console.log(substringObject);
+  }
+
+  function longestSubstring(str) {
+    let substringObject = {};
+    let tempString = "";
+    let firstLetterOfSubstring = "";
+
+    for (let i = 0; i <= str.length; i++) {
+      if (tempString.includes(str[i])) {
+        console.log("first letter ", tempString);
+
+        // if(tempString.includes(temp))
+
+        substringObject[tempString] = tempString.length;
+        tempString = "";
+      } else {
+        //    console.log("adding to tempString ", tempString + str[i]);
+        tempString = tempString + str[i];
+      }
+    }
+
+    // find max key and value in object
+    let max = 0;
+    let maxKey = "";
+
+    for (let item in substringObject) {
+      if (substringObject[item] > max) {
+        max = substringObject[item];
+        maxKey = item;
+      }
+    }
+
+    console.log(substringObject);
+
+    return maxKey + " " + max;
+  }
+
+  console.log(longestSubstring2("aaabbbbbccccddddeeeefghijklmnnnopppqrst"));
+</script>
