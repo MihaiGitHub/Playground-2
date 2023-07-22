@@ -2,6 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import App from "./App";
 
+// built in test function
 test("shows 6 products by default", async () => {
   // first render the app component
   render(<App />);
