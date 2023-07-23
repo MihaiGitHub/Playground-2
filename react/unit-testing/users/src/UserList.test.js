@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import UserList from "./UserList";
 
-test("render one row per user", () => {
+test("renders one row per user", () => {
   const users = [
     { name: "jane", email: "jane@jane.com" },
     { name: "sam", email: "sam@sam.com" },
@@ -22,4 +22,25 @@ test("render one row per user", () => {
   expect(rows).toHaveLength(2);
 });
 
-test("render the email and name of each user", () => {});
+// make sure the name and email of each user is visible within the table
+test("renders the email and name of each user", () => {
+  const users = [
+    { name: "jane", email: "jane@jane.com" },
+    { name: "sam", email: "sam@sam.com" },
+  ];
+
+  // render the component with props and destructure the container (the div that React Testing Library renders automatically as a wrapper to entire component)
+  const { container } = render(<UserList users={users} />);
+
+  // testing debugger to view HTML rendered and methods required for testing
+  screen.logTestingPlaygroundURL();
+
+  // check for each user
+  for (let user of users) {
+    const name = screen.getByRole("cell", { name: user.name });
+    const email = screen.getByRole("cell", { name: user.email });
+
+    expect(name).toBeInTheDocument();
+    expect(email).toBeInTheDocument();
+  }
+});
