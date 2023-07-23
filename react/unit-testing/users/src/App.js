@@ -6,7 +6,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const onUserAdd = (user) => {
-    setUsers([...users]);
+    setUsers([...users, user]);
   };
 
   return (
