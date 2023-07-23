@@ -1,11 +1,19 @@
 import { render, screen } from "@testing-library/react";
 import UserList from "./UserList";
 
-test("renders one row per user", () => {
+function renderComponentHelper() {
   const users = [
     { name: "jane", email: "jane@jane.com" },
     { name: "sam", email: "sam@sam.com" },
   ];
+
+  return {
+    users,
+  };
+}
+
+test("renders one row per user", () => {
+  const { users } = renderComponentHelper();
 
   // render the component with props and destructure the container (the div that React Testing Library renders automatically as a wrapper to entire component)
   const { container } = render(<UserList users={users} />);
@@ -24,13 +32,10 @@ test("renders one row per user", () => {
 
 // make sure the name and email of each user is visible within the table
 test("renders the email and name of each user", () => {
-  const users = [
-    { name: "jane", email: "jane@jane.com" },
-    { name: "sam", email: "sam@sam.com" },
-  ];
+  const { users } = renderComponentHelper();
 
   // render the component with props and destructure the container (the div that React Testing Library renders automatically as a wrapper to entire component)
-  const { container } = render(<UserList users={users} />);
+  render(<UserList users={users} />);
 
   // testing debugger to view HTML rendered and methods required for testing
   screen.logTestingPlaygroundURL();
