@@ -1,9 +1,4 @@
-import { useState } from "react";
-
 function UserList({ users }) {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-
   const renderedUsers = users.map((user) => {
     return (
       <tr key={user.name}>
