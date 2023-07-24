@@ -23,7 +23,7 @@ test("it calls onUserAdd when the form is submitted", async () => {
   // render the component with the props it requires
   render(<UserForm onUserAdd={mock} />);
 
-  // find the two inputs by id
+  // find the two inputs by id or accessible name (name between tags <button>Name</button>)
   const nameInput = screen.getByRole("textbox", {
     name: /name/i,
   });
