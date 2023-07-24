@@ -27,6 +27,7 @@ test("clicking on the button loads 6 more products", async () => {
   await user.click(button);
 
   // wait for the page to load then check for 12 <h3> elements in the DOM
+  // The default timeout is 1000ms
   await waitFor(async () => {
     const headings = await screen.findAllByRole("heading");
     expect(headings).toHaveLength(12);
