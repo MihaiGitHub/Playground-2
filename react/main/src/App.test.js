@@ -5,7 +5,7 @@ import SaveData from "./core/SaveData";
 test("SaveData component renders the correct content", () => {
   const { getByText } = render(<SaveData />);
 
-  // getByText looks at all the text inside an element at a time
+  // getByText looks at all the text inside an element at a time; use "new RegExp(value)" to have a more flexible search
   expect(getByText("Save Data")).not.toBeNull();
   expect(getByText("ID")).not.toBeNull();
   expect(getByText("Title")).not.toBeNull();
