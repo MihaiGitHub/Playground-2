@@ -5,6 +5,7 @@ import SaveData from "./core/SaveData";
 test("SaveData component renders the correct content", () => {
   const { getByText } = render(<SaveData />);
 
+  // getByText looks at all the text inside an element at a time
   expect(getByText("Save Data")).not.toBeNull();
   expect(getByText("ID")).not.toBeNull();
   expect(getByText("Title")).not.toBeNull();
