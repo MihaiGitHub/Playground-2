@@ -28,6 +28,7 @@ test("clicking on the button loads 6 more products", async () => {
 
   // wait for the page to load then check for 12 <h3> elements in the DOM
   // The default timeout is 1000ms
+  // waitFor - automatically calls 'act' for you; The act function defines a window in time where state updates can (and should) occur
   await waitFor(async () => {
     const headings = await screen.findAllByRole("heading");
     expect(headings).toHaveLength(12);
