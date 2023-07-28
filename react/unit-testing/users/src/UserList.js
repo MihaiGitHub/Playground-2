@@ -9,11 +9,11 @@ function UserList({ users }) {
   });
 
   return (
-    <table>
+    <table className="table table-striped">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Email</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
         </tr>
       </thead>
       <tbody>{renderedUsers}</tbody>
