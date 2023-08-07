@@ -12,7 +12,7 @@
       /* flex items are aligned horizontally by default */
       .flex-container {
         display: flex;
-        flex-wrap: wrap; /* on smaller screen items move on to next row */
+        /* flex-wrap: wrap;  on smaller screen items move on to next row */
       }
 
       .item {
@@ -22,13 +22,29 @@
         padding: 10px;
         text-align: center;
         border-radius: 10px;
+        width: 200px;
+        /* flex: 1; takes up the whole width (flex-grow: 1) */
+      }
+
+      .item-1 {
+        flex-shrink: 0; /* prevent this item from shrinking when screen is compressed */
+      }
+
+      .item-2 {
+        flex-grow: 1; /* it fills up the rest of the space as the screen width varies */
+        flex-basis: 0; /* like setting the width of the item */
+      }
+
+      .item-3 {
+        flex-grow: 2; /* it grows to twice the size of item 2 */
+        flex-basis: 0; /* like setting the width of the item */
       }
     </style>
   </head>
   <body>
     <div class="flex-container">
-      <div class="item item-2">
-        <h3>Item 2</h3>
+      <div class="item item-1">
+        <h3>Item 1</h3>
       </div>
       <div class="item item-2">
         <h3>Item 2</h3>
