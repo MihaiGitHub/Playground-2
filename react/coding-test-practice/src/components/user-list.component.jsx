@@ -6,15 +6,27 @@ const UserList = () => {
 
   if (loading) return <p>Loading users...</p>;
 
+  console.log("users ", users);
+
   return (
-    <ul>
+    <div style={styles.container}>
       {users.map((user) => (
-        <li key={user.id}>
-          <strong>{user.name}</strong> ({user.email})
-        </li>
+        <div key={user.id} style={styles.row}>
+          <h3 style={styles.cell}>{user.name}</h3>
+          <p style={styles.cell}>{user.email}</p>
+        </div>
       ))}
-    </ul>
+    </div>
   );
+};
+
+const styles = {
+  row: {
+    display: "flex",
+  },
+  cell: {
+    flex: 1,
+  },
 };
 
 export default UserList;
