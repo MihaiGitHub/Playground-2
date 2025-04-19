@@ -6,8 +6,6 @@ const UserList = () => {
 
   if (loading) return <p>Loading users...</p>;
 
-  console.log("users ", users);
-
   return (
     <div style={styles.container}>
       {users.map((user) => (
