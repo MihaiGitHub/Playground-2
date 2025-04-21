@@ -5,6 +5,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -12,6 +13,7 @@ export const UserProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
+        setFilteredUsers(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -21,7 +23,9 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ users, loading }}>
+    <UserContext.Provider
+      value={{ users, filteredUsers, setFilteredUsers, loading }}
+    >
       {children}
     </UserContext.Provider>
   );

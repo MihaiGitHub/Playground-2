@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
 import { UserContext } from "../contexts/user.context";
+import SortButton from "./sort-button.component";
 
 const UserList = () => {
-  const { users, loading } = useContext(UserContext);
+  const { users, filteredUsers, setFilteredUsers, loading } =
+    useContext(UserContext);
 
   if (loading) return <p>Loading users...</p>;
 
   return (
     <div style={styles.container}>
-      {users.map((user) => (
+      <SortButton
+        filteredUsers={filteredUsers}
+        setFilteredUsers={setFilteredUsers}
+      />
+      {filteredUsers.map((user) => (
         <div key={user.id} style={styles.row}>
           <h3 style={styles.cell}>{user.name}</h3>
           <p style={styles.cell}>{user.email}</p>
