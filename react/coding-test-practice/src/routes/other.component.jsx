@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Forecast from "../components/forecast.component";
 
 const Other = () => {
   const [name, setName] = useState("Benson");
@@ -23,8 +24,12 @@ const Other = () => {
     <div>
       <h1>Other</h1>
       <div>
-        Details: {name}
+        <h3>Details:</h3> {name}
         <button onClick={handleClick}>Update State</button>
+      </div>
+      <div>
+        <h3>Forecast</h3>
+        <Forecast />
       </div>
     </div>
   );
