@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ForecastContext } from "../contexts/forecast.context";
+import SearchBox from "./search-box.component";
+import Button from "./button.component";
 
 const Forecast = () => {
-  const { coordinates, setCoordinates, forecast } = useContext(ForecastContext);
+  const [value, setValue] = useState("");
+  const { setCoordinates, forecast } = useContext(ForecastContext);
+
+  const handleSubmit = () => {
+    setCoordinates(value);
+  };
 
   return (
     <div>
+      <div style={style.row}>
+        <SearchBox setValue={setValue} value={value} />
+        <Button handleSubmit={handleSubmit} />
+      </div>
       {forecast.map((item, key) => {
         return (
           <div style={style.row} key={key}>

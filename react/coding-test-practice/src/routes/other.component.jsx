@@ -24,11 +24,11 @@ const Other = () => {
     <div>
       <h1>Other</h1>
       <div>
-        <h3>Details:</h3> {name}
+        <h3>Change State</h3> {name}
         <button onClick={handleClick}>Update State</button>
       </div>
       <div>
-        <h3>Forecast</h3>
+        <h3>Search Forecast</h3>
         <Forecast />
       </div>
     </div>
