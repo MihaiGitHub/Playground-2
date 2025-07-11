@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import Forecast from "../components/forecast.component";
 
 const Other = () => {
-  const [name, setName] = useState("Benson");
+  const [user, setUser] = useState({
+    name: "John Doe",
+    address: {
+      city: "New York",
+      zip: "10001",
+    },
+  });
 
   useEffect(() => {
     console.log("component mounted");
@@ -14,18 +20,27 @@ const Other = () => {
 
   useEffect(() => {
     console.log("component updated");
-  }, [name]);
+  }, [user]);
 
   const handleClick = () => {
-    setName("Jon");
+    setUser((prevUser) => ({
+      ...prevUser,
+      address: {
+        ...prevUser.address,
+        city: "Kansas City",
+      },
+    }));
   };
 
   return (
     <div>
       <h1>Other</h1>
       <div>
-        <h3>Change State</h3> {name}
-        <button onClick={handleClick}>Update State</button>
+        <h3>Change State</h3>
+        <p>{JSON.stringify(user)}</p>
+        <p>
+          <button onClick={handleClick}>Update State</button>
+        </p>
       </div>
       <div>
         <h3>Search Forecast</h3>

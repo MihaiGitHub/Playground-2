@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 const SearchBox = ({ setValue, value }) => {
   return (
     <div>
