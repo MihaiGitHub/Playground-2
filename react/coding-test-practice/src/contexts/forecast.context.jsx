@@ -8,13 +8,31 @@ export const ForecastProvider = ({ children }) => {
   const [forecast, setForecast] = useState([]);
 
   useEffect(() => {
-    try {
-      fetch(`${API_Forecast}/${coordinates}/forecast`)
-        .then((response) => response.json())
-        .then((response) => setForecast(response.properties.periods));
-    } catch (e) {
-      console.log(e);
-    }
+    const fetchForecast = async () => {
+      try {
+        const pointsRes = await fetch(
+          `https://api.weather.gov/points/${coordinates}`
+        );
+        const pointsData = await pointsRes.json();
+
+        // SAFEST → the API guarantees this URL is valid
+        const forecastUrl = pointsData.properties.forecast;
+
+        if (!forecastUrl) {
+          console.error("No forecast URL available for this point.");
+          return;
+        }
+
+        const forecastRes = await fetch(forecastUrl);
+        const forecastData = await forecastRes.json();
+
+        setForecast(forecastData.properties.periods);
+      } catch (e) {
+        console.error("Error fetching forecast:", e);
+      }
+    };
+
+    fetchForecast();
   }, [coordinates]);
 
   return (
